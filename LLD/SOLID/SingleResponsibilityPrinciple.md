@@ -1,4 +1,4 @@
-# A class should have one resaon to change which means that a class should have one responsibility.
+# A class should have one resaon to change which means that a class should have only one responsibility.
 
 ```
 // This following example is where we are not following single responsibllity principle
@@ -47,6 +47,8 @@ We need to avoid writing this type of class as this way we are increasing the co
 Following code is one of the way where we are using single responsiblity principle -
 
 ```
+// In this following ecample we have three class for those three responsibilities
+
 class Invoice {
     private marker: Marker;
     private quantity: number;
