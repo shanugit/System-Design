@@ -74,7 +74,7 @@ class InvoicePrinter {
   }
 }
 
-class saveToDB {
+class saveToDB11 {
   private invoice: Invoice;
 
   constructor(invoice: Invoice) {
