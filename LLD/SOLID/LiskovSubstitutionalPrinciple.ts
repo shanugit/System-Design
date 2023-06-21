@@ -40,3 +40,64 @@ class BiCycle implements Bike {
     this.speed += 5;
   }
 }
+
+/**
+ * Another example of Liskov principle and how can we solve the issue of narrowing the parent object
+ */
+
+class Vehicle {
+  public hasWheel() {
+    return true;
+  }
+
+  public hasEngine(): boolean | string {
+    return true;
+  }
+}
+
+class MotorCycle extends Vehicle {}
+
+class Car extends Vehicle {}
+
+class Cycle extends Vehicle {
+  public hasEngine() {
+    return `Cycle does not have engine`;
+  }
+}
+
+let list: any[] = [];
+list.push(new MotorCycle());
+list.push(new Car());
+list.push(new Cycle());
+
+for (let item of list) {
+  console.log(item.hasEngine().toString());
+}
+
+/**
+ * Now lets say we add another class which extends Vehicle class and the hasEngine() does not return anything
+ * In that case line 74 will throw error as we are iterating over the objects and checking for hasEngine()
+ * and making it string.
+ *
+ * So when the hasEngine returns nothing we cant convert that to string.
+ * If we code like this then we have to first if hasEngnine returns something or not. This makes our code bad.
+ * We writing way too much unnecessary code which could be avoided if we follow the Liskov substitution principle
+ */
+
+class Vehicle2 {
+  public hasWheel() {
+    return true;
+  }
+}
+
+class EngineVehicle extends Vehicle2 {
+  public hasEngine() {
+    return true;
+  }
+}
+
+class Car2 extends EngineVehicle {}
+
+class BiCycle2 extends Vehicle2 {}
+
+// In this way we dont need to override the hasEngine() just like we did previously.
